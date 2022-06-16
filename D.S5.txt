@@ -1,0 +1,279 @@
+                                                            ASSINGMENT 5
+         1.Write a Program to implement insertion sort.
+         ans.// C program for insertion sort
+#include <math.h>
+#include <stdio.h>
+
+/* Function to sort an array using insertion sort*/
+void insertionSort(int arr[], int n)
+{
+	int i, key, j;
+	for (i = 1; i < n; i++) {
+		key = arr[i];
+		j = i - 1;
+
+		/* Move elements of arr[0..i-1], that are
+		greater than key, to one position ahead
+		of their current position */
+		while (j >= 0 && arr[j] > key) {
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
+	}
+}
+
+// A utility function to print an array of size n
+void printArray(int arr[], int n)
+{
+	int i;
+	for (i = 0; i < n; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+}
+
+/* Driver program to test insertion sort */
+int main()
+{
+	int arr[] = { 12, 11, 13, 5, 6 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+
+	insertionSort(arr, n);
+	printArray(arr, n);
+
+	return 0;
+}
+
+     2.Write a Program to implement Cycle sort. 
+  ans# Python program to implement cycle sort
+
+def cycleSort(array):
+writes = 0
+
+# Loop through the array to find cycles to rotate.
+for cycleStart in range(0, len(array) - 1):
+	item = array[cycleStart]
+	
+	# Find where to put the item.
+	pos = cycleStart
+	for i in range(cycleStart + 1, len(array)):
+	if array[i] < item:
+		pos += 1
+	
+	# If the item is already there, this is not a cycle.
+	if pos == cycleStart:
+	continue
+	
+	# Otherwise, put the item there or right after any duplicates.
+	while item == array[pos]:
+	pos += 1
+	array[pos], item = item, array[pos]
+	writes += 1
+	
+	# Rotate the rest of the cycle.
+	while pos != cycleStart:
+	
+	# Find where to put the item.
+	pos = cycleStart
+	for i in range(cycleStart + 1, len(array)):
+		if array[i] < item:
+		pos += 1
+	
+	# Put the item there or right after any duplicates.
+	while item == array[pos]:
+		pos += 1
+	array[pos], item = item, array[pos]
+	writes += 1
+
+return writes
+
+# driver code
+arr = [1, 8, 3, 9, 10, 10, 2, 4 ]
+n = len(arr)
+cycleSort(arr)
+
+print("After sort : ")
+for i in range(0, n) :
+	print(arr[i], end = ' ')
+
+.
+
+3.Write a Program to remove duplicates from Sorted Arrays.
+Ans.# Python3 program to
+# remove duplicates
+# Function to remove
+# duplicate elements
+
+# This function returns
+# new size of modified
+# array.
+def removeDuplicates(arr, n):
+
+	# Return, if array is
+	# empty or contains
+	# a single element
+	if n == 0 or n == 1:
+		return n
+
+	temp = list(range(n))
+
+	# Start traversing elements
+	j = 0;
+	for i in range(0, n-1):
+
+		# If current element is
+		# not equal to next
+		# element then store that
+		# current element
+		if arr[i] != arr[i+1]:
+			temp[j] = arr[i]
+			j += 1
+
+	# Store the last element
+	# as whether it is unique
+	# or repeated, it hasn't
+	# stored previously
+	temp[j] = arr[n-1]
+	j += 1
+	
+	# Modify original array
+	for i in range(0, j):
+		arr[i] = temp[i]
+
+	return j
+
+# Driver code
+arr = [1, 2, 2, 3, 4, 4, 4, 5, 5]
+n = len(arr)
+
+# removeDuplicates() returns
+# new size of array.
+n = removeDuplicates(arr, n)
+
+# Print updated array
+for i in range(n):
+	print ("%d"%(arr[i]), end = " ")
+
+     4.Write a program to Rotate an array by K positions.
+    Ans.def rotate(L,d,n):
+	k=L.index(d)
+	new_lis=[]
+	new_lis=L[k+1:]+L[0:k+1]
+	return new_lis
+
+d = 2
+n = 7
+print(rotate([1,2,3,4,5,6,7],d,n))
+
+
+5.Write a program to reverse individual words in a sentence - E.g., "Hello World" --> "olleH dLroW".
+ans.# Python3 program to reverse individual words
+# in a given string using STL list
+
+# reverses individual words of a string
+def reverserWords(string):
+	st = list()
+
+	# Traverse given string and push all characters
+	# to stack until we see a space.
+	for i in range(len(string)):
+		if string[i] != " ":
+			st.append(string[i])
+
+		# When we see a space, we print
+		# contents of stack.
+		else:
+			while len(st) > 0:
+				print(st[-1], end= "")
+				st.pop()
+			print(end = " ")
+
+	# Since there may not be space after
+	# last word.
+	while len(st) > 0:
+		print(st[-1], end = "")
+		st.pop()
+
+# Driver Code
+if __name__ == "__main__":
+	string = "Geeks for Geeks"
+	reverserWords(string)
+
+6.Program to insert a node in the middle of the Linked List.
+Ans.# Python3 implementation to insert node
+# at the middle of a linked list
+
+# Node class
+class Node:
+
+	# constructor to create a new node
+	def __init__(self, data):
+		self.data = data
+		self.next = None
+
+# function to insert node at the
+# middle of linked list given the head
+def insertAtMid(head, x):
+
+	if(head == None): #if the list is empty
+		head = Node(x)
+	else:
+		
+		# create a new node for the value
+		# to be inserted
+		newNode = Node(x)
+
+		ptr = head
+		length = 0
+		
+		# calculate the length of the linked
+		# list
+		while(ptr != None):
+			ptr = ptr.next
+			length += 1
+
+		# 'count' the number of node after which
+		# the new node has to be inserted
+		if(length % 2 == 0):
+			count = length / 2
+		else:
+			(length + 1) / 2
+
+		ptr = head
+
+		# move ptr to the node after which
+		# the new node has to inserted
+		while(count > 1):
+			count -= 1
+			ptr = ptr.next
+
+		# insert the 'newNode' and adjust
+		# links accordingly
+		newNode.next = ptr.next
+		ptr.next = newNode
+
+# function to display the linked list
+def display(head):
+	temp = head
+	while(temp != None):
+		print(str(temp.data), end = " ")
+		temp = temp.next
+
+# Driver Code
+
+# Creating the linked list 1.2.4.5
+head = Node(1)
+head.next = Node(2)
+head.next.next = Node(4)
+head.next.next.next = Node(5)
+
+print("Linked list before insertion: ", end = "")
+display(head)
+
+# inserting 3 in the middle of the linked list.
+x = 3
+insertAtMid(head, x)
+
+print("\nLinked list after insertion: " , end = "")
+display(head).
+
